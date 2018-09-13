@@ -36,7 +36,7 @@ var PluginComponent = /** @class */ (function () {
     PluginComponent.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'lib-plugin',
-                    template: "\n    <p>\n      plugin works!\n      <button mat-button (click)=\"increment()\"> increment from plugin! </button>\n    </p>\n  "
+                    template: "\n    <p>\n      plugin One works !\n      <button mat-button (click)=\"increment()\"> increment from plugin! </button>\n    </p>\n  "
                 }] }
     ];
     /** @nocollapse */

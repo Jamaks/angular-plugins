@@ -26,7 +26,7 @@ export class LoaderService {
       };
     constructor(private loader: PluginLoaderService, private injector: Injector, private router: Router) { }
 
-    load(plugin: PluginInfo, vcr: ViewContainerRef, component: ComponentRef<any>): Promise<any> {
+    load(plugin: PluginInfo, vcr: ViewContainerRef, component: any): Promise<any> {
       plugin.deps = this.modules;
       return this.loader.load(plugin).then((factory: {component: any, module: any, exports: any }) => {
         if (factory && vcr) {
