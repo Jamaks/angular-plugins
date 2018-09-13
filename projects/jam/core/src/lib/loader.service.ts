@@ -14,6 +14,7 @@ export interface PluginInfo {
   url: string;
   moduleId: string;
   entryName: string;
+  route?: string;
   deps: Dependencies;
 }
 @Injectable()
@@ -35,6 +36,7 @@ export class PluginLoaderService {
         const require = module => modules[module];
         // tslint:disable-next-line:no-eval
         eval(source);
+
         const mwcf = this.compiler.compileModuleAndAllComponentsSync(
           exports[plugin.moduleId]
         );
@@ -42,7 +44,7 @@ export class PluginLoaderService {
           e => e.selector === plugin.entryName
         );
         if (componentFactory) {
-          return componentFactory;
+          return { component: componentFactory, module: mwcf.ngModuleFactory, exports: exports };
         } else {
           return null;
         }

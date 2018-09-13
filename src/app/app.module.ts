@@ -1,18 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { MatToolbarModule, MatButtonModule } from '@angular/material';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
 import { CoreModule, PluginLoaderService } from '@jam/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { PluginLoaderComponent } from './plugin-loader/plugin-loader.component';
+import { LoaderService } from './plugin-loader/plugin-loader.service';
+import { NotLoadedComponent } from './not-loaded/not-loaded.component';
+import { DynamicPagesComponent } from './dynamic-pages/dynamic-pages.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PluginLoaderComponent,
+    NotLoadedComponent,
+    DynamicPagesComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    MatToolbarModule,
+    MatButtonModule,
     CoreModule
   ],
-  providers: [PluginLoaderService],
+  entryComponents: [DynamicPagesComponent],
+  providers: [PluginLoaderService, LoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

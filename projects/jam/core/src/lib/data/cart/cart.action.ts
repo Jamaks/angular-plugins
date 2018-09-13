@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Cart } from '../model/cart.model';
+import { Cart } from './cart.model';
 
 export enum CartActionTypes {
     CART_ITEM_INCREMENT = '[CART] ITEM INCREMENT',

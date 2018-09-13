@@ -1,6 +1,6 @@
 import * as CartsActions from './cart.action';
 import { CartActionTypes } from './cart.action';
-import { Cart } from '../model/cart.model';
+import { Cart } from './cart.model';
 
 export type Action = CartsActions.All;
 
