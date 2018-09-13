@@ -29,18 +29,21 @@ export class LoaderService {
     load(plugin: PluginInfo, vcr: ViewContainerRef, component: ComponentRef<any>): Promise<any> {
       plugin.deps = this.modules;
       return this.loader.load(plugin).then((factory: {component: any, module: any, exports: any }) => {
-        if (factory) {
+        if (factory && vcr) {
           vcr.clear();
+
           component = vcr.createComponent(factory.component, 0, this.injector);
-          const componentRef: any = factory.component;
+          // const componentRef: any = factory.component;
           // const componentRef: any = component;
 
           console.log(factory.exports.pluginRoutes);
+          if (plugin.route) {
+            this.router.config.unshift({
+              path: plugin.route,
+              component: DynamicPagesComponent
+            });
+          }
 
-          this.router.config.unshift({
-            path: plugin.route,
-            component: componentRef
-          });
           // this.router.config.unshift({
           //   path: plugin.route,
           //   component: DynamicPagesComponent,

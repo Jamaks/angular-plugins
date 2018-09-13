@@ -2,6 +2,7 @@ import { Component, ViewContainerRef, ViewChild, OnDestroy, ComponentRef, Inject
 import { PluginLoaderService, PluginInfo, AppState, incrementCartItem } from '@jam/core';
 import { Store } from '@ngrx/store';
 import { LoaderService } from './plugin-loader.service';
+import { DynamicPagesComponent } from '../dynamic-pages/dynamic-pages.component';
 
 @Component({
   selector: 'app-plugin-loader',
@@ -11,6 +12,8 @@ import { LoaderService } from './plugin-loader.service';
 export class PluginLoaderComponent implements OnInit, OnDestroy {
   @ViewChild('content',  { read: ViewContainerRef })
   content: ViewContainerRef;
+  @ViewChild('dynamic')
+  dynamic: DynamicPagesComponent;
   @ViewChild('head',  { read: ViewContainerRef })
   head: ViewContainerRef;
   component: ComponentRef<any>;
@@ -32,7 +35,8 @@ export class PluginLoaderComponent implements OnInit, OnDestroy {
       moduleId: 'PluginModule',
       deps: null
     };
-    this.loaderService.load(firstPlugin, this.content, this.component).then(() => {});
+
+    this.loaderService.load(firstPlugin, this.dynamic.content, this.component).then(() => {});
     this.loaderService.load(headPlugin, this.head, this.component).then(() => {});
   }
 
