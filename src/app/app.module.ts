@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule, MatButtonModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CoreModule, PluginLoaderService } from '@jam/core';
+import { CoreModule } from '@jam/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +27,7 @@ import { DynamicPagesComponent } from './dynamic-pages/dynamic-pages.component';
     CoreModule
   ],
   entryComponents: [DynamicPagesComponent],
-  providers: [PluginLoaderService, LoaderService],
+  providers: [LoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

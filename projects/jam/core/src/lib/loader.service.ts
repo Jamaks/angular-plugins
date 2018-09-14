@@ -6,6 +6,7 @@ import {
   ReflectiveInjector,
   ViewContainerRef
 } from '@angular/core';
+import { CasheService } from './cashe.service';
 
 export interface Dependencies {
   [key: string]: Object;
@@ -22,13 +23,17 @@ export class PluginLoaderService {
   private injector: Injector;
   private compiler: Compiler;
 
-  constructor(injector: Injector) {
+  constructor(injector: Injector, private casheService: CasheService) {
     this.injector = ReflectiveInjector.resolveAndCreate([], injector);
     this.compiler = this.injector.get(Compiler);
   }
   load(plugin: PluginInfo): Promise<any> {
     // TODO: Add cashe
-    return fetch(plugin.url)
+    // return this.casheService.get(plugin.url).then(data => {
+    //   if (!data) {
+
+    //   }
+      return fetch(plugin.url)
       .then(response => response.text())
       .then(source => {
         const exports = {};
@@ -49,5 +54,5 @@ export class PluginLoaderService {
           return null;
         }
       });
-  }
+    }
 }
