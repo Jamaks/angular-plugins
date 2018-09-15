@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CasheService } from './cashe.service';
 
+// Определяем некий манифест
 export interface Dependencies {
   [key: string]: Object;
 }
