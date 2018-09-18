@@ -1,12 +1,15 @@
-<mat-toolbar>
+<mat-toolbar class="toolbar">
     <div  *ngFor="let toolbar of toolbar$ | async">
       <a [routerLink]="[toolbar.route]">
           {{ toolbar.title }}
       </a>
     </div>
 </mat-toolbar>
-
-Items: {{cart?.items}} <br>
+<div class="item-count">
+  <div>
+    {{cart?.items}}
+  </div>
+</div>
 
 <button mat-button (click)="increment()"> increment! </button>
 <br>
